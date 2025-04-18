@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requirement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        a {
+            text-align: center;
+            display: block;
+            margin: 20px;
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h2 th:text="'Requirement for ' + ${bicycles} + ' bicycles'">Requirement</h2>
+</header>
+<table>
+    <tr><th>Part</th><th>Quantity</th></tr>
+    <tr th:each="entry : ${requirement}">
+        <td th:text="${entry.key}"></td>
+        <td th:text="${entry.value}"></td>
+    </tr>
+</table>
+<a href="/">Back</a>
+</body>
+</html>

@@ -1,9 +1,12 @@
 package com.mrp.service;
 
+import com.mrp.dto.RecipeComponentDTO;
 import com.mrp.entities.Inventory;
 import com.mrp.entities.RecipeComponent;
+import com.mrp.mapper.RecipeComponentMapper;
 import com.mrp.repositories.InventoryRepository;
 import com.mrp.repositories.RecipeComponentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -16,9 +19,14 @@ public class MRPServiceImpl implements MRPService {
     private final RecipeComponentRepository recipeRepo;
     private final InventoryRepository inventoryRepo;
 
-    public MRPServiceImpl(RecipeComponentRepository recipeRepo, InventoryRepository inventoryRepo) {
+    private final RecipeComponentMapper recipeComponentMapper;
+
+
+    @Autowired
+    public MRPServiceImpl(RecipeComponentRepository recipeRepo, InventoryRepository inventoryRepo, RecipeComponentMapper recipeComponentMapper) {
         this.recipeRepo = recipeRepo;
         this.inventoryRepo = inventoryRepo;
+        this.recipeComponentMapper = recipeComponentMapper;
     }
 
     @Override
@@ -89,7 +97,8 @@ public class MRPServiceImpl implements MRPService {
     }
 
     @Override
-    public void addRecipeComponent(RecipeComponent rc) {
+    public void addRecipeComponent(RecipeComponentDTO dto) {
+        RecipeComponent rc = recipeComponentMapper.toEntity(dto);
         recipeRepo.save(rc);
     }
 }

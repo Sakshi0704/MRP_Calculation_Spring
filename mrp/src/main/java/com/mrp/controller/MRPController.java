@@ -1,11 +1,14 @@
 package com.mrp.controller;
 
 
+import com.mrp.dto.RecipeComponentDTO;
 import com.mrp.entities.RecipeComponent;
 import com.mrp.service.MRPService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,8 +17,9 @@ import java.util.Map;
 @Controller
 public class MRPController {
     private final MRPService service;
-    public MRPController(MRPService service) { this.service = service; }
 
+    @Autowired
+    public MRPController(MRPService service) { this.service = service; }
     @GetMapping("/")
     public String home() { return "index"; }
 
@@ -53,11 +57,10 @@ public class MRPController {
     }
 
     @PostMapping("/add-recipe")
-    public String addRecipe(@RequestParam String partName, @RequestParam int quantity,
-                            @RequestParam boolean subComponent, @RequestParam(required = false) String parentName) {
-        RecipeComponent rc = new RecipeComponent(partName, quantity, subComponent, parentName);
-        service.addRecipeComponent(rc);
+    public String addRecipe(@ModelAttribute RecipeComponentDTO dto) {
+        service.addRecipeComponent(dto);
         return "redirect:/";
     }
+
 }
 

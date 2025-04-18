@@ -1,5 +1,6 @@
 package com.mrp.service;
 
+import com.mrp.dto.RecipeComponentDTO;
 import com.mrp.entities.RecipeComponent;
 
 import java.util.Map;
@@ -16,6 +17,6 @@ public interface MRPService {
 
     void addPart(String partName);
 
-    void addRecipeComponent(RecipeComponent rc);
+    void addRecipeComponent(RecipeComponentDTO rc);
 
 }
