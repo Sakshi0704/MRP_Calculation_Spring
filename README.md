@@ -17,8 +17,6 @@ Or open the project in an IDE (like IntelliJ) and run MrpApplication.java.
 
 3. Once running, access the API endpoint:
 GET http://localhost:8080/calculateMRP
-(Use tools like Postman or your browser.)
-
 ## 🛠️ Technologies Used
 Java
 
